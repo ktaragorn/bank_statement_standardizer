@@ -8,7 +8,12 @@ class Statement
   end
 
   def export_csv file
-    file = File.open(file, "wb")
-    CSV.dump(@records, file)
+    CSV.open(file, "wb") do |csv|
+      headers = @records.first.csv_headers
+      csv << headers
+      @records.each do |record|
+        csv << record.csv_dump(headers)
+      end
+    end
   end
 end
