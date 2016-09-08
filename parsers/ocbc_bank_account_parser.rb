@@ -3,7 +3,6 @@ class OCBCBankAccountParser < CSVParser
 
   def _parse_line line
     @state ||= :summary
-    p line
     if @state == :summary && line[0].to_s.downcase == "transaction date"
       @state = :records
     elsif @state == :records
@@ -15,14 +14,4 @@ class OCBCBankAccountParser < CSVParser
       end
     end
   end
-
-  def _finalize_statement
-    _write_to_statement
-  end
-
-  private
-    def _write_to_statement
-      @statement << @statement_record if @statement_record
-      @statement_record = nil
-    end
 end
