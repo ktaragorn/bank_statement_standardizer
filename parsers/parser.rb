@@ -10,7 +10,7 @@ class Parser
     _finalize_statement
   end
   def parse_into output
-    @statements.each do |statement|
+    @statements.map do |statement|
       statement.export_csv(output)
     end
   end
