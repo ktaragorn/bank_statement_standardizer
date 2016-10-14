@@ -1,5 +1,6 @@
 require_relative "csv_parser"
 class OCBCCreditCardParser < CSVParser
+  register "ocbc_credit_cards", self
   # Main Credit CardOCBC 365 Credit Card 4524-1920-0283-6744
   # Transaction date  Description Withdrawals (SGD) Deposits (SGD)
   # 29/09/2016  CASH REBATE   1.41

@@ -1,6 +1,6 @@
 require_relative "csv_parser"
 class POSBAccountParser < CSVParser
-
+  register "posb_account", self
   #Transaction Date Reference Debit Amount  Credit Amount Transaction Ref1  Transaction Ref2  Transaction Ref3
   #27 Aug 2016 ICT   600 Anu Spending Cash Z073751608270739122994160827073912  OTHR
 

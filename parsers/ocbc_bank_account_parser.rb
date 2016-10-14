@@ -1,6 +1,6 @@
 require_relative "csv_parser"
 class OCBCBankAccountParser < CSVParser
-
+  register "ocbc_account", self
   def _parse_line line
     @state ||= :summary
     if @state == :summary && line[0].to_s.downcase == "transaction date"

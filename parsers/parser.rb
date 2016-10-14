@@ -2,6 +2,16 @@ require_relative "../statement/statement"
 require_relative "../statement/statement_record"
 class Parser
   attr_reader :statements, :statement
+  @@types = {}
+
+  def self.register type, klass
+    @@types[type] = klass
+  end
+
+  def self.types
+    @@types
+  end
+
   def initialize input
     @statements = [Statement.new]
     @statement = @statements.first
@@ -23,7 +33,7 @@ class Parser
     if @statement_record
       @statement << @statement_record
     elsif date
-      @statement << Statement.new(date, description, income, expense)
+      @statement << StatementRecord.new(date, description, income, expense)
     end
     @statement_record = nil
   end

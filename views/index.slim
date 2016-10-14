@@ -1,0 +1,6 @@
+form action="standardize" method="post"
+  input type="file" name="statement"
+  select name="type"
+    - Parser.types.keys.each do |type|
+      option value=type =type.titleize
+  input type="submit"
