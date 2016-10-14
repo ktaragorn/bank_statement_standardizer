@@ -1,6 +1,7 @@
 class Statement
-  def initialize
+  def initialize suffix = ""
     @records = []
+    @suffix = suffix
   end
 
   def << record
@@ -8,7 +9,7 @@ class Statement
   end
 
   def export_csv file
-    CSV.open(file, "wb") do |csv|
+    CSV.open(file + @suffix, "wb") do |csv|
       headers = @records.first.csv_headers
       csv << headers
       @records.each do |record|

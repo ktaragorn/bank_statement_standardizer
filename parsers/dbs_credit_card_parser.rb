@@ -8,7 +8,6 @@ class DBSCreditCardParser < CSVParser
     else
       [0, line[2][2..-1].to_f]
     end
-    @statement_record = StatementRecord.new(line[0], line[1], income, expense)
-    _write_to_statement
+    _write_to_statement line[0], line[1], income, expense
   end
 end
