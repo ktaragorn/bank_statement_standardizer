@@ -15,10 +15,12 @@ get "/" do
 end
 
 post "/standardize" do
-  out_dir = Dir.tmpdir()
-  out_file = out_dir + "/bank_statement"
+  out_dir = settings.public_dir + "/statements/"
+  FileUtils.remove_dir(out_dir) if Dir.exists? out_dir
+  FileUtils.mkdir(out_dir)
+  out_file = out_dir + "bank_statement"
   parser = Parser.types[params[:type].to_s].new(params[:statement])
   statements = parser.parse_into out_file
-  # slim :standardized, locals: {statements: statements}
+  slim :standardized, locals: {statements: statements}
   # send_file statements.first
 end

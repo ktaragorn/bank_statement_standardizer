@@ -1,2 +1,2 @@
 - statements.each do |statement|
-  a href=statement =statement
+  a href=statement.gsub(settings.public_dir, "") = File.basename(statement)
