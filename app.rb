@@ -19,7 +19,7 @@ post "/standardize" do
   FileUtils.remove_dir(out_dir) if Dir.exists? out_dir
   FileUtils.mkdir_p(out_dir)
   out_file = out_dir + "bank_statement"
-  parser = Parser.types[params[:type].to_s].new(params[:statement])
+  parser = Parser.types[params[:type].to_s].new(params[:statement][:tempfile].path)
   statements = parser.parse_into out_file
   slim :standardized, locals: {statements: statements}
   # send_file statements.first
